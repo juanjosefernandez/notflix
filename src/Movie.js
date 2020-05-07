@@ -1,39 +1,41 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import './App.js';
-import Overlay from './Overlay';
-import ReactDOM from 'react-dom';
+import Portal from './Portal';
+import OverlayContent from './OverlayContent';
 
-// const backDropUrl = "https://image.tmdb.org/t/p/original/9sXHqZTet3Zg5tgcc0hCDo8Tn35.jpg";
 
 class Movie extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      imageLocation: "https://image.tmdb.org/t/p/original/" + this.props.backdrop,
-      isToggleOn: false
+    constructor(props) {
+      super(props)
+      this.state = { 
+          overlay: false,
+          imageLocation: "https://image.tmdb.org/t/p/original/" + this.props.particularMovie.backdrop_path }
+      this.openOverlay = this.openOverlay.bind(this)
+      this.closeOverlay = this.closeOverlay.bind(this)
     }
-
-    this.handleClick = this.handleClick.bind(this);
+    
+    openOverlay() {
+      this.setState({ overlay: true })   
+    }
+    
+    closeOverlay() {
+      this.setState({ overlay: false })
+    }
+    
+    render() {
+      return (
+        <a onHover={this.props.particularMovie.title} class="movie-container">
+        <p class="centered">{this.props.particularMovie.title}</p>
+        <img src={this.state.imageLocation} alt={this.props.particularMovie.title} onClick={this.openOverlay}/> 
+          {this.state.overlay &&
+            <Portal>
+              <OverlayContent  particularMovie = {this.props.particularMovie} closeOverlay={this.closeOverlay} />
+            </Portal>
+          }
+        </a>
+      )
+    }
   }
 
-  componentDidMount() {
-    console.log(this.state.imageLocation);
-  }
-
-  handleClick() {
-    return (<Overlay title={this.props.title} overview={this.props.overview} />)
-  }
-
-  render() {
-    return (
-      // <a><img src={this.state.imageLocation} alt={this.props.title} onClick={this.handleClick}/>    
-      <a><Overlay title={this.props.title} overview={this.props.overview} imageLocation={this.state.imageLocation} /></a>            // {console.log(this.state.imageURL);}
-    )
-  }
-}
-
-
-export default Movie;
+  export default Movie;

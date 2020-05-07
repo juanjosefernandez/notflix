@@ -9,7 +9,9 @@ import ReactDOM from 'react-dom';
 class Overlay extends React.Component {
     constructor(props) {
       super(props)
-      this.state = { overlay: false }
+      this.state = { 
+          overlay: false,
+          imageLocation: "https://image.tmdb.org/t/p/original/" + this.props.particularMovie.backdrop_path }
       this.openOverlay = this.openOverlay.bind(this)
       this.closeOverlay = this.closeOverlay.bind(this)
     }
@@ -25,10 +27,10 @@ class Overlay extends React.Component {
     render() {
       return (
         <div>
-        <img src={this.props.imageLocation} alt={this.props.title} onClick={this.openOverlay}/> 
+        <img src={this.state.imageLocation} alt={this.props.particularMovie.title} onClick={this.openOverlay}/> 
           {this.state.overlay &&
             <Portal>
-              <OverlayContent title = {this.props.title} overview = {this.props.overview} closeOverlay={this.closeOverlay} />
+              <OverlayContent  particularMovie = {this.props.particularMovie} closeOverlay={this.closeOverlay} />
             </Portal>
           }
         </div>

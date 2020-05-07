@@ -150,6 +150,22 @@ header {
   transform: scale(1.4);
 }
 
+.movie-container{
+  position: relative; 
+  text-align: center;
+} 
+
+.centered {
+  color: white;
+  text-align: center;
+  /* width: 100%; */
+  font-size: 1.5vw;
+  position: absolute;
+  top: 25%;
+  left: 50%; 
+  transform: translate(-50%, -50%);
+}
+
 .box img {
   border-radius: 2px;
 }

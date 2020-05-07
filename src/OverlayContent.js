@@ -11,10 +11,8 @@ class OverlayContent extends React.Component {
     render() {
       return (
         <div className="container white">
-          <h1>{this.props.title} </h1>
-         
-
-          <p> {this.props.overview} </p>
+          <h1>{this.props.particularMovie.title} </h1>
+          <p> {this.props.particularMovie.overview} </p>
           <button className="btn btn-default btn-wide palette-sun-flower" onClick={this.props.closeOverlay}>Close</button>
         </div>
       )

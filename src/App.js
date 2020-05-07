@@ -40,7 +40,7 @@ class App extends React.Component {
 
   makeMovieComponent(movie)
   {
-    return (<Movie backdrop = {movie.backdrop_path} title = {movie.title} overview = {movie.overview}/>)
+    return (<Movie particularMovie = {movie}/>)
   }
 
 
