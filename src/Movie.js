@@ -26,13 +26,14 @@ class Movie extends React.Component {
     render() {
       return (
         <a onHover={this.props.particularMovie.title} class="movie-container">
-        <p class="centered">{this.props.particularMovie.title}</p>
+        <div><p class="centered">{this.props.particularMovie.title}</p>
         <img src={this.state.imageLocation} alt={this.props.particularMovie.title} onClick={this.openOverlay}/> 
           {this.state.overlay &&
             <Portal>
               <OverlayContent  particularMovie = {this.props.particularMovie} closeOverlay={this.closeOverlay} />
             </Portal>
           }
+          </div>
         </a>
       )
     }
